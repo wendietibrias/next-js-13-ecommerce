@@ -51,6 +51,13 @@ const RecommendedProduct = () => {
       getRecommendedProduct();
     },[]);
 
+      if(!products) {
+         return (
+            <div className="w-full">
+                <h3 className="font-semibold text-gray-700 text-center">No Products</h3>
+            </div>
+         )
+    }
 
     return (
       <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
