@@ -9,11 +9,11 @@ export type FavoriteState = {
 }
 
 if(typeof window !== "undefined") {
-    favoriteItems = JSON.parse(localStorage.getItem("wmart-favorite-user") || "null") || [];
+    favoriteItems = JSON.parse(localStorage.getItem("wmart-favorite-user") || "null")
 }
 
 const initialState : FavoriteState = {
-    favorites:favoriteItems
+    favorites:favoriteItems || []
 }
 
 const favoriteSlice = createSlice({

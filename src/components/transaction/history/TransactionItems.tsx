@@ -36,6 +36,14 @@ const TransactionItems = () => {
       fetchTransactions();
    },[]);
 
+   if(!Array.isArray(transactions)) {
+      return (
+        <div className="w-full py-8">
+            <h3 className="text-lg text-gray-700 text-center font-semibold">No transactions found</h3>
+        </div>
+      )
+   }
+
 
    return (
      <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
