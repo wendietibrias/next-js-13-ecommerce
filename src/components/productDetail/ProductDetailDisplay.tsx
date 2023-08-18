@@ -43,7 +43,7 @@ const ProductDetailDisplay = ({ slug } : ProductDetailDisplayProps) => {
 
            if(detailProduct) {
                setProduct(detailProduct[0]);
-               setLoading(true);
+               setLoading(false);
            }
              
         } catch(err) {
