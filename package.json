@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.1.1",
@@ -25,6 +26,7 @@
     "next-auth": "^4.23.0",
     "next-sanity": "^5.2.7",
     "postcss": "8.4.27",
+    "prisma": "^5.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.4",
