@@ -18,7 +18,7 @@ const FavoriteItems = () => {
 
     return (
             <div className="w-full">
-               <h3 className="text-lg font-semibold text-gray-700">No favorite item found</h3>
+               <h3 className="text-lg sm:text-sm text-center font-semibold text-gray-700">No favorite item found</h3>
             </div>
     )
 }

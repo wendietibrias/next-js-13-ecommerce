@@ -39,7 +39,7 @@ const TransactionItems = () => {
    if(!Array.isArray(transactions)) {
       return (
         <div className="w-full py-8">
-            <h3 className="text-lg text-gray-700 text-center font-semibold">No transactions found</h3>
+            <h3 className="text-lg sm:text-sm text-gray-700 text-center font-semibold">No transactions found</h3>
         </div>
       )
    }
@@ -48,7 +48,7 @@ const TransactionItems = () => {
    return (
      <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
         <div className="py-8">
-            <h3 className="text-lg font-bold text-gray-700 mb-5">Transaction history ({transactions.length})</h3>
+            <h3 className="text-lg sm:text-sm font-bold text-gray-700 mb-5">Transaction history ({transactions.length})</h3>
             <div className="grid grid-cols-3 lg:grid-cols-2 sm:grid-cols-1 gap-4">
                 {loading ? (
                     arrayDummy.map((item : number) => (
@@ -59,10 +59,10 @@ const TransactionItems = () => {
                     <div key={idx} className="w-full rounded-md border p-4 border-gray-300 shadow-md shadow-gray-300">
                         <div className="flex justify-between items-center">
                             <h5 className="text-[17px] font-bold text-gray-700">Total {convertMoney(Number(transaction.grandTotal))}</h5>
-                            <button className="text-[12px] text-blue-500 font-semibold flex items-center gap-x-2">
+                            {/* <button className="text-[12px] text-blue-500 font-semibold flex items-center gap-x-2">
                                 <AiOutlineEye className="text-[18px]"/>
                                 See detail
-                            </button>
+                            </button> */}
                         </div>
                         <p className="text-[13px] text-gray-400 mt-1">{transaction.detail.length} products</p>
                         <p className="text-[13px] text-gray-400">{transaction.paymentMethod}</p>

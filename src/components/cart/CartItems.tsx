@@ -17,7 +17,7 @@ const CartItems = () => {
 
     return (
         <div className="flex-1">
-             <h3 className="text-lg font-semibold text-gray-700">No cart items(0)</h3>
+             <h3 className="text-lg sm:text-sm font-semibold text-gray-700">No cart items(0)</h3>
         </div>
     )
 }

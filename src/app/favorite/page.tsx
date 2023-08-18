@@ -10,7 +10,7 @@ const Favorite = () => {
         <div className="w-[80%] lg:w-full sm:w-full lg:px-3 mx-auto flex flex-col justify-between min-h-screen">
           <Navbar/>
           <main className="flex-1 py-8">
-             <h3 className="text-lg text-gray-700 font-bold mb-5">Favorite products</h3>
+             <h3 className="text-lg sm:text-sm text-gray-700 font-bold mb-5">Favorite products</h3>
              <FavoriteItems/>
           </main>
           <Footer/>

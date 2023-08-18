@@ -20,7 +20,7 @@ const CheckoutForm = () => {
     const { open } = useAppSelector(state=>state.alert);
     const { carts } = useAppSelector(state=>state.cart);
     const { data:session,status } = useSession();
-    const { register,handleSubmit,formState:{ errors },setValue } = useForm();
+    const { register,handleSubmit,formState:{ errors },setValue,reset } = useForm();
     const [loading,setLoading] = useState<boolean>(false);
 
     const submitHandler = async (formData : any) => {
@@ -35,7 +35,8 @@ const CheckoutForm = () => {
                  variant:'success',
                  message:`${data?.message}, redirected to homepage...`
              }));
-
+ 
+             reset();
              setTimeout(() => router.push("/") ,2000);
           }
 
