@@ -1,8 +1,9 @@
 "use client"
+import { useRouter,redirect } from 'next/navigation';
 import { closeAlert, openAlert } from '@/slices/alert.slice';
 import { useAppDispatch } from '@/hooks/redux.hook';
+import { useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Input from '../Input';
 
@@ -10,6 +11,7 @@ const RegisterForm = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
+  const { data:session , status } = useSession();
   const { register,handleSubmit,formState:{ errors } } = useForm();
 
   const submitHandler = async (formData : any) => {
@@ -35,6 +37,16 @@ const RegisterForm = () => {
      }
 
      setTimeout(() => dispatch(closeAlert()) ,5000);
+  }
+
+  if(status === "loading") {
+     return (
+       <div>Authenticating User...</div>
+     )
+  }
+
+  if(status === "authenticated") {
+     return redirect("/");
   }
 
   return (

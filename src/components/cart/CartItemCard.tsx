@@ -23,12 +23,12 @@ const CartItemCard = ({
 
   return (
     <div className="w-full shadow-md shadow-gray-300 p-4 rounded-lg">
-       <div className="w-full rounded-lg h-[220px] bg-gray-100 flex justify-center items-center">
-         <img src={cart.thumbnail} alt={cart.slug} className="w-[60%]"/>
+       <div className="w-full rounded-lg h-[220px] sm:h-[170px] xs:h-[150px] overflow-hidden bg-gray-100 flex justify-center items-center">
+         <img src={cart.thumbnail} alt={cart.slug} className="w-[60%] xs:w-[55%]"/>
        </div>
        <div className="pt-4">
-         <div className="flex justify-between items-center">
-            <h4 className="text-[12px] font-semibold  text-gray-700">{cart.title}</h4>
+         <div className="flex justify-between sm:flex-col sm:items-start items-center">
+            <h4 className="text-[12px] sm:w-[100px] sm:text-ellipsis sm:overflow-hidden sm:whitespace-nowrap font-semibold  text-gray-700">{cart.title}</h4>
              <h4 className="text-[12px] font-bold text-blue-500">{convertMoney(cart.price)}</h4>
          </div>
          <p className="text-[12px] text-gray-400 mt-1">{cart.category}</p>

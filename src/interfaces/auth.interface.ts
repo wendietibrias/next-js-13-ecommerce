@@ -6,5 +6,6 @@ export interface IAuthProviderInput {
 
 export interface IAuthProviderOutput {
     name:string;
-    email:string;
+    email:string | null;
+    id:string;
 }

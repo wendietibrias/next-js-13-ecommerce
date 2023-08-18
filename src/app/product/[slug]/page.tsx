@@ -16,7 +16,7 @@ const ProductDetail = ({
 } : ProductDetailProps) => {
 
     return (
-        <div className="w-[80%] mx-auto flex flex-col justify-between min-h-screen">
+        <div className="w-[80%] sm:w-full mx-auto flex flex-col justify-between min-h-screen">
             <Navbar/>
              <main className="w-full py-8 flex-1">
                 <ProductDetailDisplay slug={params.slug} />

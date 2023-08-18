@@ -83,7 +83,9 @@ const cartSlice = createSlice({
               });
 
               state.carts = mapIncreaseCartItem;
-           } else {
+           } 
+           
+           if(payload?.type === "decrease") {
               const mapDecreaseCartItem : any = state.carts.map((item : ICartState) => {
                   if(item.slug === payload.slug) {
                      return {

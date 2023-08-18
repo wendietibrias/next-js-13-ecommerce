@@ -8,9 +8,9 @@ export const metadata : Metadata = {
 
 export default function Home() {
   return (
-     <div className="w-[80%] mx-auto">
+     <div className="w-[80%]  lg:w-full mx-auto">
         <Navbar/>
-        <main className="py-8">
+        <main className="py-8 lg:py-0">
            <Banner/>
            <RecommendedProduct/>
            <AllProduct/>

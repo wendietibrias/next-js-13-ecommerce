@@ -7,11 +7,13 @@ export const metadata : Metadata = {
 
 const Cart = () => {
     return (
-        <div className="w-[80%] mx-auto min-h-screen flex flex-col justify-between">
+        <div className="w-[80%] lg:w-full lg:px-3 mx-auto min-h-screen flex flex-col justify-between">
             <Navbar/>
-             <main className="w-full py-8 flex-1 flex items-start gap-x-10">
-                <CartItems/>
-                <CartSummary/>
+             <main className="w-full py-8 flex-1 ">
+                <div className="flex items-start gap-x-10 lg:flex-col lg:gap-y-10">
+                    <CartItems/>
+                    <CartSummary/>
+                </div>
              </main>
             <Footer/>
         </div>

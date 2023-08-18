@@ -1,14 +1,16 @@
 "use client"
-import { useAppDispatch,useAppSelector } from "@/hooks/redux.hook";
-import { useEffect,useState } from 'react';
+import { useRouter,redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { useAppDispatch } from "@/hooks/redux.hook";
+import { useState } from 'react';
 import { closeAlert, openAlert } from "@/slices/alert.slice";
-import { useRouter } from 'next/navigation';
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import Loading from "../Loading";
 import Input from "../Input";
 
 const LoginForm = () => {
+    const { data:session,status } = useSession();
     const { register,handleSubmit,formState:{ errors } } = useForm();
     const [loading,setLoading] = useState<boolean>(false);
 
@@ -21,18 +23,17 @@ const LoginForm = () => {
         try {
             const loginHandler = await signIn("credentials" , {
                 ...formData,
-                redirect:false
+                redirect:true,
+                callbackUrl:process.env.NEXT_PUBLIC_CALLBACK_URL
             });
              
             if(loginHandler?.error) {
-                dispatch(openAlert({
+                 dispatch(openAlert({
                     open:true,
                     message:loginHandler.error,
                     variant:"error"
                 }));
-            } else {
-                router.push("/");
-            }
+            } 
 
             setLoading(false);
         } catch(err : any) {
@@ -42,8 +43,10 @@ const LoginForm = () => {
 
         setTimeout(() => dispatch(closeAlert()) , 6000);
     }
-
- 
+    
+   if(status === "authenticated") {
+      return redirect("/");
+   }
 
     return (
         <form onSubmit={handleSubmit(submitHandler)} className="w-full mt-7 flex flex-col gap-y-3">

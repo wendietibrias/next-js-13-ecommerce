@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react"
 import { FiShoppingCart } from 'react-icons/fi';
 import { BiUserCircle } from 'react-icons/bi';
 import { useAppSelector } from "@/hooks/redux.hook";
+import { useRouter } from 'next/navigation';
 
 const token = null;
 
@@ -17,9 +18,11 @@ const Navbar = () => {
    const { carts } = useAppSelector(state=>state.cart);
    const { favorites } = useAppSelector(state=>state.favorite);
    const { data: session,status } = useSession();
+
+   const router = useRouter();
    
    return (
-     <nav className="w-full relative pt-4 pb-3 border-b border-gray-300 flex justify-between items-center">
+     <nav className="w-full relative pt-4 pb-3 sm:pb-4 lg:px-3 border-b border-gray-300 flex justify-between items-center">
        <Link href="/">
          <span className="font-extrabold block text-gray-700 text-[22px]">WMART</span>
        </Link>
@@ -42,7 +45,7 @@ const Navbar = () => {
            <span className="text-[12px] font-semibold text-gray-700">{session.user?.name}</span>
          </button>
          ) : (
-           <Link href="/auth">
+           <Link href={status === "loading" ? "/" : "/auth"}>
               <button className="text-white font-semibold capitalize bg-blue-500 text-[12px] ml-3 rounded-md py-2 px-3">Sign in</button>
            </Link>
          )}
@@ -53,7 +56,7 @@ const Navbar = () => {
             <AiOutlineLogout className="text-lg"/>
             Logout
           </button>
-            <button className="text-[12px] text-gray-700 font-semibold flex items-center gap-x-3">
+            <button onClick={() => router.push("/transaction/history")} className="text-[12px] text-gray-700 font-semibold flex items-center gap-x-3">
             <MdOutlinePayment className="text-lg"/>
             Transactions
           </button>

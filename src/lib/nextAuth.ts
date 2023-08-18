@@ -10,7 +10,9 @@ const authOptions : NextAuthOptions = {
         GoogleProvider({
              clientId:`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`,
              clientSecret:`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET}`,
-             allowDangerousEmailAccountLinking: true
+             allowDangerousEmailAccountLinking: true,
+             
+             
         }),
         CredentialsProvider({
            name:'credentials',
@@ -18,32 +20,58 @@ const authOptions : NextAuthOptions = {
              email:{ type:"email" },
              password:{ type:"password" }
            },
-           async authorize(credentials, req) : Promise<IAuthProviderOutput | any> {
+           async authorize(credentials, req) : Promise<IAuthProviderOutput | null> {
                const findUser = await prisma.user.findUnique({
                   where: {
                      email:credentials?.email
                   }
                });
-
                if(!findUser) {
-                  return null;
+                  throw new Error("user not found");
                }
 
                const comparePassword = await bcrypt.compare(credentials?.password , findUser.password);
-
                if(!comparePassword) {
-                  return null;
+                  throw new Error("Invalid password or email");
                }
-
+               
                return {
+                  id:findUser.id,
                   email:findUser?.email,
-                  name:findUser?.name
+                  name:findUser?.name,
                };
            },
         })
     ],
-    session:{},
-    callbacks:{},
+    session: {
+      strategy: "jwt",
+      maxAge:60 * 60 * 24 * 60 * 60 
+    },
+    callbacks:{
+       async signIn({ account,credentials,user }){
+          return true;
+       },
+       async jwt({ token,session,user,account }) {
+          if(user) {
+             return {
+               ...token,
+                id:user.id,
+                provider:account?.provider
+             }
+          }
+         
+          return token;
+       },
+       async session({ user,token,session }) {
+          return {
+            ...session,
+            user: {
+               ...session.user,
+               id:token.id
+            }
+          }
+       }
+    },
     pages:{
       signIn:"/auth/login"
     },

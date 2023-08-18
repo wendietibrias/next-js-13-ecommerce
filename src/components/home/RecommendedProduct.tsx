@@ -5,10 +5,14 @@ import { useState,useEffect } from "react";
 import { IProductPromise } from "@/interfaces/product.interface";
 import { ProductCard } from "..";
 import { sanityClient } from "@/utils/sanityClient";
+import SkeletonProductCard from "./SkeletonProductCard";
+
+const arrayDummy = [1,2,3,4];
 
 const RecommendedProduct = () => {
     const [loading,setLoading] = useState<boolean>(true);
     const [products,setProducts] = useState<IProductPromise[]>([]);
+    const [sizeWindow,setSizeWindow] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 1920);
 
     const getRecommendedProduct = async () => {
          try {
@@ -20,8 +24,8 @@ const RecommendedProduct = () => {
              "category":category->
            }`)
            if(fetchRecommendedProduct) {
-               setLoading(false);
-               setProducts(fetchRecommendedProduct);
+             setProducts(fetchRecommendedProduct);
+             setLoading(false);
            }
 
          } catch(err : any) {
@@ -34,27 +38,33 @@ const RecommendedProduct = () => {
     }
 
     useEffect(() => {
-        getRecommendedProduct();
+      if(typeof window !== "undefined") {
+        window.addEventListener('load' , function() {
+          setSizeWindow(Number(this.innerWidth));
+        });
+        
+        window.addEventListener('resize' , function() {
+          setSizeWindow(this.innerWidth);
+        });
+      }
+
+      getRecommendedProduct();
     },[]);
 
 
-    if(loading) {
-        return (
-        <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
-          <div className="mt-10 w-full">
-            <Skeleton count={4} width="23%" height={300} containerClassName='flex flex-wrap gap-y-4 items-center justify-between' />
+    return (
+      <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
+          <div className="mt-7 lg:px-3 sm:mt-10">
+              <h3 className="text-lg sm:text-md font-bold text-gray-700">Recommended Product</h3>
+              <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mt-5 sm:mt-3">
+                {loading ? (
+                  arrayDummy.map((item : number, idx : number) => <SkeletonProductCard key={idx} />)
+                ) : (
+                  products.map((product : IProductPromise , idx : number) => <ProductCard key={idx} product={product} loading={loading} />)
+                  )}
+              </div>
           </div>
         </SkeletonTheme>
-        )
-    }
-
-    return (
-        <div className="mt-7">
-            <h3 className="text-lg font-bold text-gray-700">Recommended Product</h3>
-            <div className="w-full grid grid-cols-4 mt-5 gap-4">
-              {products.map((product : IProductPromise , idx : number) => <ProductCard key={idx} product={product} />)}
-            </div>
-        </div>
     )
 }
 

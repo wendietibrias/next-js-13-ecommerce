@@ -21,7 +21,7 @@ const CartSummary = () => {
 
   if(carts && Array.isArray(carts)) {
      return (
-          <div className="w-[450px] bg-slate-100 rounded-md p-4">
+          <div className="w-[450px] lg:w-full bg-slate-100 rounded-md p-4">
             <div className="border-b border-gray-300 pb-2">
                 <h3 className="text-gray-700 text-sm font-semibold">Order Summary</h3>
             </div>

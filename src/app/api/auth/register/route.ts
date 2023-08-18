@@ -20,6 +20,10 @@ export const POST = async (req : Request) => {
         return  NextResponse.json({ message:"account already exists" } , { status:400 });
      }
 
+     if(!password || password === "") {
+        return NextResponse.json({ message:"please complete credentials" } , { status:400 });
+     }
+
      if(password !== confirm) {
         return  NextResponse.json({ message:"password is not match" } , { status:400 });
      }
