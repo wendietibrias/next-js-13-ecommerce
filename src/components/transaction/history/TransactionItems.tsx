@@ -2,6 +2,7 @@
 import { useEffect,useState } from 'react';
 import { ITransactionResponse } from '@/interfaces/transaction.interface';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Link from "next/link";
 import { AiOutlineEye } from 'react-icons/ai';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -58,14 +59,16 @@ const TransactionItems = () => {
                     transactions && Array.isArray(transactions) && transactions.map((transaction : ITransactionResponse , idx : number) => (
                     <div key={idx} className="w-full rounded-md border p-4 border-gray-300 shadow-md shadow-gray-300">
                         <div className="flex justify-between items-center">
-                            <h5 className="text-[17px] font-bold text-gray-700">Total {convertMoney(Number(transaction.grandTotal))}</h5>
-                            {/* <button className="text-[12px] text-blue-500 font-semibold flex items-center gap-x-2">
-                                <AiOutlineEye className="text-[18px]"/>
-                                See detail
-                            </button> */}
+                            <h5 className="text-[17px] sm:text-sm font-bold text-gray-700">Total {convertMoney(Number(transaction.grandTotal))}</h5>
+                            <Link href={`/transaction/detail/${transaction.id}`}>
+                                <button className="text-[12px] text-blue-500 font-semibold flex items-center gap-x-2">
+                                    <AiOutlineEye className="text-[18px]"/>
+                                    See detail
+                               </button>
+                            </Link>
                         </div>
                         <p className="text-[13px] text-gray-400 mt-1">{transaction.detail.length} products</p>
-                        <p className="text-[13px] text-gray-400">{transaction.paymentMethod}</p>
+                        <p className="text-[13px] text-gray-400">{new Date(transaction.createdAt).toDateString()}</p>
                     </div>
                 ))
                 )}

@@ -5,7 +5,7 @@ import { useState,useEffect } from "react";
 import { IProductPromise } from "@/interfaces/product.interface";
 import { ProductCard } from "..";
 import { sanityClient } from "@/utils/sanityClient";
-import SkeletonProductCard from "./SkeletonProductCard";
+import SkeletonProductCard from "../skeleton/SkeletonProductCard";
 
 const arrayDummy = [1,2,3,4];
 

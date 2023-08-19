@@ -33,6 +33,7 @@ import CheckoutItems from "./checkout/CheckoutItems";
 
 //transaction
 import TransactionItems from "./transaction/history/TransactionItems";
+import TransactionDetailitems from "./transaction/detail/TransactionDetailItems";
 
 export {
     Banner,
@@ -51,5 +52,6 @@ export {
     Alert,
     CheckoutForm,
     CheckoutItems,
-    TransactionItems
+    TransactionItems,
+    TransactionDetailitems
 }

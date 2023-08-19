@@ -7,7 +7,7 @@ import { sanityClient } from "@/utils/sanityClient";
 import { ProductCard } from "..";
 import { IProductPromise } from "@/interfaces/product.interface";
 import Link from "next/link";
-import SkeletonProductCard from './SkeletonProductCard';
+import SkeletonProductCard from '../skeleton/SkeletonProductCard';
 
 const arrayDummy = [1,2,3,4,5,6,7,8];
 

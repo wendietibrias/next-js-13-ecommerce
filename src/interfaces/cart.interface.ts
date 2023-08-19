@@ -1,7 +1,7 @@
 
 export interface ICartState {
     title:string;
-    slug:string;
+    slug:string | null;
     price:number;
     category:string;
     qty:number;

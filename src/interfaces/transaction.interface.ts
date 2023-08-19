@@ -1,5 +1,5 @@
 
-type TransactionDetails = {
+export type TransactionDetails = {
     title:string;
     price:number;
     category:string;
@@ -14,5 +14,12 @@ export interface ITransactionResponse {
     delivery:string;
     paymentMethod:string;
     cardNumber:string;
+    address:string;
+    name:string;
+    email:string;
+    country:string;
+    city:string;
+    phone:string;
     detail:TransactionDetails[]
+    createdAt:string;
 }
