@@ -62,10 +62,10 @@ const RecommendedProduct = () => {
     return (
       <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
           <div className="mt-7 lg:px-3 sm:mt-10">
-              <h3 className="text-lg sm:text-md font-bold text-gray-700">Recommended Product</h3>
+              <h3 className="text-lg sm:text-sm font-bold text-gray-700">Recommended Product</h3>
               <div className="grid grid-cols-4 lg:grid-cols-2 gap-4 mt-5 sm:mt-3">
                 {loading ? (
-                  arrayDummy.map((item : number, idx : number) => <SkeletonProductCard key={idx} />)
+                  arrayDummy.map((item : number) => <SkeletonProductCard key={item} />)
                 ) : (
                   products.map((product : IProductPromise , idx : number) => <ProductCard key={idx} product={product} loading={loading} />)
                   )}

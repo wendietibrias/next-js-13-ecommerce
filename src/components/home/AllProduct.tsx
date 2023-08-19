@@ -66,7 +66,7 @@ const AllProduct = () => {
       <SkeletonTheme baseColor="#ecf0f1" highlightColor="#fff">
             <div className="w-full mt-10 lg:px-3">    
             <div className="flex justify-between items-center">
-                <h3 className="text-lg sm:text-md font-bold text-gray-700">All Product</h3>
+                <h3 className="text-lg sm:text-sm font-bold text-gray-700">All Product</h3>
                 <Link href="/product">
                     <button className="text-blue-500 text-[12px] font-semibold">See more</button>
                 </Link>
