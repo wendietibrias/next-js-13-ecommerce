@@ -1,6 +1,6 @@
 "use client"
 import axios from 'axios';
-import CheckoutItemCard from '@/components/checkout/CheckoutItemCard';
+import TransactionItemCard from './TransactionItemCard';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useEffect,useState } from 'react';
 import { useParams,redirect,useRouter } from 'next/navigation';
@@ -58,7 +58,7 @@ const TransactionDetailitems = () => {
                 {loading ? (
                     arrayDummy.map((item : number) => <SkeletonProductCard key={item}/>)
                 ) : (
-                    Array.isArray(transaction?.detail) && transaction?.detail.map((transaction : TransactionDetails, idx : number) => <CheckoutItemCard item={{...transaction,slug:null}} key={idx} />)
+                    Array.isArray(transaction?.detail) && transaction?.detail.map((transaction : TransactionDetails, idx : number) => <TransactionItemCard item={transaction} key={idx} />)
                 )}
              </div>
            </div>
