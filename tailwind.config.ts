@@ -18,7 +18,7 @@ const config: Config = {
       '2xl': {'max': '1535px'},
       // => @media (max-width: 1535px) { ... }
 
-      'xl': {'max': '1260px'},
+      'xl': {'max': '1286px'},
       // => @media (max-width: 1279px) { ... }
 
       'lg': {'max': '1023px'},
